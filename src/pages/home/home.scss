@@ -1,3 +1,47 @@
 page-home {
-
+    .chat {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        // height: 8%;
+    }
+      
+    .message {
+        border-radius: 5px;
+        margin: 0.2em 0;
+        padding: 0.5em;
+        max-width: 50%;
+    }
+      
+    .sent {
+        align-self: flex-start;
+        background-color: rgb(255, 255, 255);
+        color: black;
+        border: 1px solid #e6e3e3;
+    }
+      
+    .received {
+        align-self: flex-end;
+        background-color: rgb(83, 163, 216);
+        color: white;
+        border: 1px solid #e6e3e3;
+    }
+    .sent-img {
+        align-self: flex-start;        
+    }
+      
+    .received-img {
+        align-self: flex-end;        
+    }
+    .input-wrap {
+        padding: 5px;
+        display: flex;
+        background-color: white;
+        textarea {
+          flex: 1;
+          border: 0;
+          border-bottom: 1px black;
+          border-style: solid;
+        }
+    }
 }

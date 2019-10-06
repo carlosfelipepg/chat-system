@@ -1,14 +1,42 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
       Ionic Blank
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding *ngIf="!showMessages">
+  <ion-item *ngIf="!showMessages">
+    <ion-input placeholder="Sala" type="text" name="txtRoom" [(ngModel)]="room"></ion-input>
+  </ion-item>
+
+  <div padding *ngIf="!showMessages">
+    <button ion-button block (click)="getRoom()" color="primary">
+      Entrar
+    </button>
+  </div>
 </ion-content>
+
+<ion-content padding *ngIf="showMessages">
+  <div class="chat" *ngFor="let item of messages">
+    <div *ngIf="item.message !=''" class="message"
+      [ngClass]="{'sent':userCode!=item.userCode,'received':userCode==item.userCode}">
+      {{item.message}}</div>
+    <img style="width: 260px;height: 200px;" src="{{item.image}}" *ngIf="item.image"
+      [ngClass]="{'sent-img':userCode!=item.userCode,'received-img':userCode==item.userCode}" />
+  </div>
+</ion-content>
+
+<ion-footer no-border [style.height]="'55px'" *ngIf="showMessages">
+  <div class="input-wrap">
+    <button ion-button clear icon-only item-right (click)="takePicture()">
+      <ion-icon name="md-images"></ion-icon>
+    </button>
+    <textarea placeholder="Mensagem" name="txtMsg" [(ngModel)]="msg" (keyup.enter)="submit()" (focusin)="onFocus()">
+    </textarea>
+    <button ion-button clear icon-only item-right (click)="submit()">
+      <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+    </button>
+  </div>
+</ion-footer>
