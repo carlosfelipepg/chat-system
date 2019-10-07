@@ -12,7 +12,6 @@ import * as firebase from 'firebase';
 export class ImageProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello ImageProvider Provider');
   }
 
   uploadImage(image: string): any {

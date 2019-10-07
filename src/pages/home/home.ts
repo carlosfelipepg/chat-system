@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Events, Content } from 'ionic-angular';
+import { NavController, Content, AlertController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
-import * as firebase from 'firebase';
 import { ImageProvider } from '../../providers/image/image';
+import * as firebase from 'firebase';
 
 const config = {
   apiKey: 'AIzaSyCkbJtsyGViP7JcPSLR2MwZlle-8JCs_O4',
@@ -26,31 +25,15 @@ export class HomePage {
   public showMessages: boolean = false;
   public messages: any;
   public userCode: string = "";
-  public imageSend;
+  public imageSend: any;
 
-
-  // firebaseRef = firebase.initializeApp(config);
   firebaseRef = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
   constructor(
     public navCtrl: NavController,
     private camera: Camera,
-    public imgProvider: ImageProvider) {
-  }
-  ionViewDidLoad = () => {
-    console.log('bumba')
-    this.content.resize();
-  }
-  ionImgDidLoad() {
-    console.log('did load')
-  }
-
-  ionError() {
-    console.log('error load')
-  }
-
-  ionImgWillLoad() {
-    console.log('will load')
+    public imgProvider: ImageProvider,
+    private alertCtrl: AlertController) {
   }
 
   getRoom = async () => {
@@ -97,13 +80,6 @@ export class HomePage {
       this.firebaseRef.database().ref().update(updates);
 
       this.scrollToBottom();
-      // if (data.state == 'success'){
-      //   var dataP = { msg: msg, tp: 'i', sender: uIdA, img:data.downloadURL }
-      //   this.afDB.object("/chats/" + uIdB + "/infoChats/" + uIdA).set({ emailSender: emailA, lastMSG: msg });
-      //   this.afDB.object("/chats/" + uIdA + "/infoChats/" + uIdB).set({ emailSender: emailB, lastMSG: msg });
-      //   this.afDB.list("/chats/" + uIdB + "/detail/" + uIdA).push(dataP);
-      //   return this.afDB.list("/chats/" + uIdA + "/detail/" + uIdB).push(dataP);
-      // }
     });
   }
 
@@ -111,7 +87,7 @@ export class HomePage {
     const options: CameraOptions = {
       quality: 30,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.camera.DestinationType.DATA_URL,//FILE_URI,//
+      destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
     }
@@ -121,6 +97,12 @@ export class HomePage {
       this.sendImage();
     }, (err) => {
       console.log(err)
+      let alert = this.alertCtrl.create({
+        title: 'Ocorreu um erro',
+        subTitle: 'Ouve um problema ao enviar a imagem',
+        buttons: ['OK']
+      });
+      alert.present();
     });
   }
 
@@ -134,10 +116,6 @@ export class HomePage {
 
     this.msg = "";
     this.scrollToBottom();
-    // this.firebaseRef.database().ref('room/' + this.room).once('value').then(function (snapshot) {
-    //   var username = (snapshot.val() && snapshot.val()) || 'Anonymous';
-    //   console.log(typeof username)
-    // });    
   }
 
   onFocus = () => {
