@@ -1,9 +1,8 @@
-page-home {
+page-home { 
     .chat {
         font-family: sans-serif;
         display: flex;
-        flex-direction: column;
-        // height: 8%;
+        flex-direction: column;                
     }
       
     .message {
@@ -29,7 +28,13 @@ page-home {
     .sent-img {
         align-self: flex-start;        
     }
-      
+    
+    .img-chat {
+        width: 260px;
+        height: 200px;
+        margin: 8px 0;
+    }
+
     .received-img {
         align-self: flex-end;        
     }

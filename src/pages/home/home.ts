@@ -44,30 +44,8 @@ export class HomePage {
     await this.firebaseRef.database().ref('room/' + this.room).on('child_added', function (data) {
       this.messages.push({ key: data.key, message: data.val().message, userCode: data.val().userCode, image: data.val().image });
     }.bind(this));
+
     this.showMessages = true;
-    // await this.firebaseRef.database().ref('room/' + this.room).once('value', function (snapshot) {
-    //   console.log(snapshot.val());
-    //   console.log('um', this.messages)
-    //   snapshot.forEach((data) => {
-    //     this.messages.push({ key: data.key, message: data.val().message, userCode: data.val().userCode, image: data.val().image });
-    //   });
-    // }.bind(this));
-    // console.log('dois', this.messages)
-    // this.showMessages = true;
-    // this.firebaseRef.database().ref('room/' + this.room).set({
-    //   username: { cod: Math.random() * (40 - 1), message: this.msg }
-    // // });    
-    // var newPostKey = this.firebaseRef.database().ref().child('room').push().key;
-    // console.log(newPostKey)
-    // var updates = {};    
-    // updates['/room/' + this.room + '/' + newPostKey] = { message: this.msg };
-
-    // this.firebaseRef.database().ref().update(updates);
-
-    // this.firebaseRef.database().ref('room/' + this.room).once('value').then(function (snapshot) {
-    //   var username = (snapshot.val() && snapshot.val()) || 'Anonymous';
-    //   console.log(typeof username)
-    // });    
   }
 
   sendImage = () => {

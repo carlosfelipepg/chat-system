@@ -1,11 +1,3 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header> -->
-
 <ion-content padding *ngIf="!showMessages">
   <ion-item *ngIf="!showMessages">
     <ion-input placeholder="Sala" type="text" name="txtRoom" [(ngModel)]="room"></ion-input>
@@ -23,7 +15,7 @@
     <div *ngIf="item.message !=''" class="message"
       [ngClass]="{'sent':userCode!=item.userCode,'received':userCode==item.userCode}">
       {{item.message}}</div>
-    <img style="width: 260px;height: 200px;" src="{{item.image}}" *ngIf="item.image"
+    <img class="img-chat" src="{{item.image}}" *ngIf="item.image"
       [ngClass]="{'sent-img':userCode!=item.userCode,'received-img':userCode==item.userCode}" />
   </div>
 </ion-content>
