@@ -37,6 +37,9 @@ export class HomePage {
   }
 
   getRoom = async () => {
+    if (!this.room) {
+      return;
+    }
     this.userCode = this.makeid(6);
     this.messages = [];
     this.showMessages = true;
@@ -85,6 +88,9 @@ export class HomePage {
   }
 
   submit = () => {
+    if (!this.msg) {
+      return;
+    }
     var newPostKey = this.firebaseRef.database().ref().child('room').push().key;
 
     var updates = {};
@@ -118,6 +124,5 @@ export class HomePage {
     }
     return result;
   }
-
 
 }

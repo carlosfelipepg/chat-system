@@ -7,7 +7,7 @@ import { Camera } from '@ionic-native/camera';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MyApp } from './app.component';
+import { ChatSystem } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ImageProvider } from '../providers/image/image';
 import { LoadProvider } from "../providers/load-provider";
@@ -15,18 +15,18 @@ import { LoadProvider } from "../providers/load-provider";
 
 @NgModule({
   declarations: [
-    MyApp,
+    ChatSystem,
     HomePage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(ChatSystem)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    ChatSystem,
     HomePage
   ],
   providers: [
